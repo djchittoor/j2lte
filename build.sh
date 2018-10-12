@@ -9,7 +9,7 @@ make clean && make mrproper
 make aspiration_NN_defconfig
 make exynos3475-j2lte_swa_open_00.dtb exynos3475-j2lte_swa_open_01.dtb exynos3475-j2lte_swa_open_02.dtb exynos3475-j2lte_swa_open_03.dtb exynos3475-j2lte_swa_open_04.dtb
 # Make zImage
-make ARCH=arm -j4
+make -j4
 # Make DT.img
 ./tools/dtbtool -o ./boot.img-dtb -v -s 2048 -p ./scripts/dtc/ $DTS/
 # Cleaup
