@@ -54,3 +54,16 @@ on post-exec-install-preload
     write -f /efs/recovery/postrecovery "post-exec-install-preload:done\n"
     ls /efs/imei/
     
+# for copying default music file  (Changes for P180205-05066)
+on exec-media-file
+    echo "-- Copying media files..."
+    precondition -f mounted  /data
+    ls /data/
+
+    echo "--  preload checkin..."
+    mount -f /preload
+    precondition mounted /preload
+
+    cp -y -r -v -f --with-fmode=0664 --with-dmode=0775 --with-owner=media_rw.media_rw /preload/INTERNAL_SDCARD/ /data/media/0/
+    cmp -r /preload/INTERNAL_SDCARD/ /data/media/0/
+    unmount /preload
